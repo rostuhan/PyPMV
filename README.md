@@ -19,3 +19,5 @@ options:
 # Usage Examples
 - ```python main.py -m "MIDIs\Test.mid" -c "Clips\Mr Beast.mp4" -o TestOutput.mp4```
 - ```python main.p -m "MIDIs\Twinkle Twinkle Little Star.mid" -c "Clips\Mr Beast.mp4"```
+# YouTube Video
+[<img src="https://img.youtube.com/vi/KvH-a5EOg7A/maxresdefault.jpg" width="500px" alt="PyPMV - a Python script for generating YTPMV audio and visuals">](https://youtu.be/KvH-a5EOg7A)
