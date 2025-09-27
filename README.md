@@ -1,5 +1,7 @@
-# PyPMV
-PyPMV is a Python script for generating YTPMV audio and visuals, all in one!
+# PyPMV-RosaFix
+PyPMV is a Python script for generating YTPMV audio and visuals, all in one! 
+This fork aims to fix the librosa bug found in recent version of PyPMV, which makes the program unusable. 
+This is due to librosa having a different way of doing the time_stretch() function in newer versions, meaning running the old time_stretch() logic would break the script.
 # Requirements
 - Python
 # Usage
