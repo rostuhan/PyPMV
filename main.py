@@ -1,13 +1,21 @@
-import os
 import argparse
-from moviepy.editor import *
-import pretty_midi
+import os
+
 import librosa
+import pretty_midi
 import soundfile as sf
+from moviepy.editor import VideoFileClip, AudioFileClip, CompositeVideoClip
+
 parser = argparse.ArgumentParser(prog="PyPMV")
 parser.add_argument("-m", "--midi", required=True, help="Path to the MIDI file")
 parser.add_argument("-c", "--clip", required=True, help="Path to the video clip file")
-parser.add_argument("-o", "--output", required=False, help="Path to the output video file", default="output.mp4")
+parser.add_argument(
+    "-o",
+    "--output",
+    required=False,
+    help="Path to the output video file",
+    default="output.mp4",
+)
 args = parser.parse_args()
 midiFile = pretty_midi.PrettyMIDI(args.midi)
 notes = []
@@ -24,8 +32,10 @@ for note in notes:
     audio = clip1.audio
     audio.to_audiofile("temp.wav")
     y, sr = librosa.load("temp.wav")
-    y = librosa.effects.time_stretch(y, clip1.duration / (note.end - note.start))
-    y = librosa.effects.pitch_shift(y, sr, n_steps=(note.pitch - 60), bins_per_octave=12)
+    y = librosa.effects.time_stretch(y, rate=clip1.duration / (note.end - note.start))
+    y = librosa.effects.pitch_shift(
+        y, sr=sr, n_steps=(note.pitch - 60), bins_per_octave=12
+    )
     sf.write("temp2.wav", y, sr)
     audio = AudioFileClip("temp2.wav")
     clip = clip.set_audio(audio)
